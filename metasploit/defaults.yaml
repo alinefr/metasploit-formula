@@ -1,0 +1,3 @@
+metasploit:
+  directory: /opt/metasploit
+  version: latest

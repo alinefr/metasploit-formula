@@ -1,0 +1,7 @@
+name: metasploit
+os: CentOS, Fedora
+os_family: RedHat
+version: 201602
+release: 1
+summary: Formula for installing Metasploit
+description: Formula for installing Metasploit

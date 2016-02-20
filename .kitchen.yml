@@ -1,0 +1,25 @@
+driver:
+  name: docker
+
+platforms:
+  - name: centos-7
+    driver_config:
+      image: corux/centos7-salt
+
+provisioner:
+  name: salt_solo
+  formula: metasploit
+  pillars-from-files:
+    metasploit.sls: pillar.example
+  pillars:
+    top.sls:
+      base:
+        "*":
+          - metasploit
+  state_top:
+    base:
+      "*":
+        - metasploit
+
+suites:
+  - name: default

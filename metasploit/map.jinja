@@ -1,0 +1,14 @@
+{% import_yaml 'metasploit/defaults.yaml' as default_settings %}
+{% set metasploit = salt['pillar.get']('metasploit', default=default_settings.get('metasploit'), merge=True) %}
+
+{% set url = 'http://downloads.metasploit.com/data/releases' %}
+{% if metasploit.version != 'latest' %}
+{% set url = url + '/archive' %}
+{% endif %}
+
+{% set arch = '-x64' if grains.get('osarch') == 'x86_64' else '' %}
+{% set url = url + '/metasploit-' + metasploit.version + '-linux' + arch + '-installer.run' %}
+
+{% do metasploit.update({
+  'url': metasploit.get('url', url)
+}) %}
