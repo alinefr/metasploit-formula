@@ -10,7 +10,7 @@ metasploit-installer:
       - cmd: metasploit-installer
 
   cmd.run:
-    - name: /tmp/metasploit-installer-{{ metasploit.version }}.run --mode unattended --prefix {{ metasploit.directory }}
+    - name: /tmp/metasploit-installer-{{ metasploit.version }}.run --mode unattended --prefix {{ metasploit.directory }} && {{ metasploit.directory }}/ctlscript.sh stop
     - unless: test -d {{ metasploit.directory }}
 
 metasploit-rm-init.d:
