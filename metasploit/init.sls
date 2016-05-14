@@ -37,6 +37,10 @@ metasploit-service:
   service.running:
     - name: metasploit
     - enable: True
+{% if salt['cmd.run']('[[ `systemctl` =~ -\.mount ]] && echo "true" == "true"') %}
+    - provider: systemd
+{% endif %}
+
     - require:
       - file: metasploit-service
       - cmd: metasploit-installer
